@@ -1,0 +1,12 @@
+datetime('now','localtime')
+output 2020-12-06 11:12:08
+INSERT INTO TABLE_NAME [(column1, column2, column3,...columnN)]  
+VALUES (value1, value2, value3,...valueN);
+select strftime('%Y-%m-%d %H:%M',time) from time2 where id='8'
+select strftime('%Y-%m-%d %H:%M',columname) from table 
+"INSERT INTO time2 (time) VALUES ('"+time+"');"
+CREATE TABLE "time2" (
+	"id"	INTEGER,
+	"time"	TEXT,
+	PRIMARY KEY("id")
+)
