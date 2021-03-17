@@ -1,0 +1,15 @@
+
+$primary: #1f6f8b;
+$font-family-sans-serif: 'Noto Sans JP', sans-serif;
+$font-family-sans-serif-secondary: 'Noto Sans JP', sans-serif;
+
+@import 'bootstrap/mixins';
+@import 'bootstrap/functions';
+@import 'bootstrap/variables';
+
+@import 'bootstrap/bootstrap';
+
+@import 'components/site-navbar';
+@import 'components/site-base';
+@import 'components/site-blocks';
+@import 'components/site-footer';
