@@ -4,7 +4,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
@@ -15,6 +15,37 @@
 	<link rel="stylesheet" href="../css/tiny-slider.css">
 	<link rel="stylesheet" href="../css/aos.css">
 	<link rel="stylesheet" href="../css/style.css">
+    <style type="text/css">
+
+ .dowebok { position: absolute; left: 50%; top: 50%; width: 430px; height: 650px; margin: -300px 0 0 -215px;  overflow: hidden;}
+ .logo1 { width: 104px; height: 104px; margin: 50px auto 80px; background:  0 0 no-repeat; }
+ .form-item { position: relative; width: 360px; margin: 0 auto; padding-bottom: 30px;}
+ .form-item input { width: 288px; height: 48px; padding-left: 70px; border: 1px solid #fff; border-radius: 25px; font-size: 18px; color: #fff; background-color: transparent; outline: none;}
+ .form-item button { width: 360px; height: 50px; border: 0; border-radius: 25px; font-size: 18px; color: #1f6f4a; outline: none; cursor: pointer; background-color: #fff; }
+ #username { background:  20px 14px no-repeat; }
+ #password { background:  23px 11px no-repeat; }
+ #email {background: 20px 14px no-repeat;}
+ .tip { display: none; position: absolute; left: 20px; top: 52px; font-size: 14px; color: #f50; }
+ .reg-bar { width: 360px; margin: 20px auto 0; font-size: 14px; overflow: hidden;}
+ .reg-bar a { color: #fff; text-decoration: none; }
+ .reg-bar a:hover { text-decoration: underline; }
+ .reg-bar .reg { float: left; }
+ .reg-bar .forget { float: right; }
+ .dowebok ::-webkit-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok :-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok ::-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok :-ms-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+ @media screen and (max-width: 500px) {
+ * { box-sizing: border-box; }
+ .dowebok { position: static; width: auto; height: auto; margin: 0 30px; border: 0; border-radius: 0; }
+ .logo { margin: 50px auto; }
+ .form-item { width: auto; }
+ .form-item input, .form-item button, .reg-bar { width: 100%; }
+ }
+    </style>
+
+
 
 	<title>Rocket--The Best House Property Company</title>
 </head>
@@ -36,7 +67,7 @@
 					<a href="index.html" class="logo m-0 float-start">Rocket</a>
 
 					<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-						<li><a href="index.html">Home</a></li>
+						<li class="active"><a href="index.html">Home</a></li>
 						<li class="has-children">
 							<a href="properties.html">Properties</a>
 							<ul class="dropdown">
@@ -54,7 +85,7 @@
 						</li>
 						<li><a href="services.html">Services</a></li>
 						<li><a href="about.html">About</a></li>
-						<li class="active"><a href="contact.html">Contact Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 
 					<a href="#" class="burger me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
@@ -66,73 +97,49 @@
 		</div>
 	</nav>
 
-	<div class="hero page-inner">
+	<div class="hero">
+
+
+		<div class="hero-slide">
+			<div class="img overlay" style="background-image: url('../images/hero_bg_1.jpg')"></div>
+			<div class="img overlay" style="background-image: url('../images/hero_2.jpg')"></div>
+		</div>
 
 		<div class="container">
 			<div class="row justify-content-center align-items-center">
-				<div class="col-lg-9 text-center mt-5">
-					<h1 class="heading" data-aos="fade-up">Contact Us</h1>
+				<div class="col-lg-9 text-center">
 
-					<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
-						<ol class="breadcrumb text-center justify-content-center">
-							<li class="breadcrumb-item "><a href="index.html">Home</a></li>
-							<li class="breadcrumb-item active text-white-50" aria-current="page">Contact Us</li>
-						</ol>
-					</nav>
+                    <div class="dowebok">
+ <div class="logo1"></div>
+                        <h1 class="heading" data-aos="fade-up">Registration</h1>
+ <div class="form-item">
+          <input id="email" type="text" autocomplete="off" placeholder="Enter your email">
+ </div>
+ <div class="form-item">
+
+ <input id="username" type="text" autocomplete="off" placeholder="Enter your username">
+ </div>
+ <div class="form-item">
+ <input id="password" type="password" autocomplete="off" placeholder="Enter your password">
+ </div>
+ <div class="form-item"><button id="submit">Sign In</button></div>
+ <div class="reg-bar">
+ <a class="reg" href="login.html">sign up</a>
+ <a class="forget" href="javascript:">Forgot Password</a>
+ </div>
+ </div>
+
 
 
 				</div>
 			</div>
-
-
-		</div>
-	</div>
-
-
-	<div class="section section-4 border-top">
-		<div class="container">
-			<div class="row text-left mb-5">
-				<div class="col-lg-6">
-					<h2 class="font-weight-bold heading text-primary mb-4">Get In Touch</h2>
-					<p class="text-black-50">Hello World!</p>
-				</div>
-			</div>
-
-			<form class="row">
-				
-				<div class="mb-3 col-lg-6">
-					<input type="text" class="form-control" placeholder="Name">
-				</div>
-
-				<div class="mb-3 col-lg-6">
-					<input type="text" class="form-control" placeholder="Email Address">
-				</div>
-
-				<div class="mb-3 col-lg-6">
-					<input type="text" class="form-control" placeholder="Subject">
-				</div>
-
-				<div class="mb-3 col-lg-6">
-					<input type="text" class="form-control" placeholder="Phone">
-				</div>
-
-				<div class="mb-3 col-lg-12">
-					<textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write your message here..."></textarea>
-				</div>
-
-				<div class="mb-3 col-lg-12">
-					<input type="text" class="btn btn-primary" value="Send Message">
-				</div>
-			</form>
-			
-
-			
 		</div>
 	</div>
 
 
 
-	
+
+
 
 	<div class="site-footer">
 		<div class="container">
