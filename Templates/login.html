@@ -25,7 +25,6 @@
  #username { background:  20px 14px no-repeat; }
  #password { background:  23px 11px no-repeat; }
 
- .tip { display: none; position: absolute; left: 20px; top: 52px; font-size: 14px; color: #f50; }
  .reg-bar { width: 360px; margin: 20px auto 0; font-size: 14px; overflow: hidden;}
  .reg-bar a { color: #fff; text-decoration: none; }
  .reg-bar a:hover { text-decoration: underline; }
@@ -111,14 +110,22 @@
 
                     <div class="dowebok">
  <div class="logo1"></div>
+						<form method="post" action="login">
+							{% for message in get_flashed_messages() %}
+								{{ message  }}
+							{% endfor %}
  <div class="form-item">
 	 <h1 class="heading" data-aos="fade-up">Login</h1>
- <input id="username" type="text" autocomplete="off" placeholder="Enter your username">
+	 <label for="username"></label><input id="username" type="text" autocomplete="off" placeholder="Enter your username">
  </div>
  <div class="form-item">
- <input id="password" type="password" autocomplete="off" placeholder="Password">
+	 <label for="password"></label><input id="password" type="password" autocomplete="off" placeholder="Password">
  </div>
- <div class="form-item"><button id="submit">Login</button></div>
+ <div class="form-item">
+<input id="submit" type="submit" autocomplete="off" placeholder="Submit">
+<!--	 <button id="submit">Login</button>-->
+ </div>
+						</form>
  <div class="reg-bar">
  <a class="reg" href="register.html">sign in</a>
  <a class="forget" href="javascript:">Forgot Password</a>
