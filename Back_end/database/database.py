@@ -7,14 +7,14 @@ class Account(db.Model):
     identity=db.Column(db.String)
 
 class Client(db.Model):
-    clientID=db.Column(db.Integer,primary_key=True)
+    ID=db.Column(db.Integer,primary_key=True)
     client_permission = db.Column(db.String, index=True)
-    buyerID=db.Column(db.Integer,db.ForeignKey('buyer.ID'))   # client 指向 buyer 的外键
-    sellerID=db.Column(db.Integer,db.ForeignKey('seller.ID'))   # client 纸箱 seller 的外键
+    buyer_id=db.Column(db.Integer,db.ForeignKey('buyer.ID'))   # client 指向 buyer 的外键
+    seller_id=db.Column(db.Integer,db.ForeignKey('seller.ID'))   # client 纸箱 seller 的外键
 
 
 class Admin(db.Model):
-    adminID=db.Column(db.Integer,primary_key=True)
+    ID=db.Column(db.Integer,primary_key=True)
     admin_permission=db.Column(db.String,index=True)
 
 
@@ -39,9 +39,7 @@ class Seller(db.Model):
 class Order(db.Model):
     ID=db.Column(db.Integer,primary_key=True)
     type=db.Column(db.String)
-    house_ID=db.Column(db.Integer,db.ForeignKey('house.ID'))
-    buyers=db.relationship('Buyer')
-    sellers=db.relationship('Seller')
+    house_id=db.Column(db.Integer,db.ForeignKey('house.ID'))  # order 指向 house 的外键
 
 class House(db.Model):
     ID=db.Column(db.Integer,primary_key=True)
