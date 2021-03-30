@@ -110,22 +110,25 @@
 
                     <div class="dowebok">
  <div class="logo1"></div>
-						<form method="post" action="login">
+						<form method="post" action="/login" id="nameform">
 							{% for message in get_flashed_messages() %}
 								{{ message  }}
 							{% endfor %}
- <div class="form-item">
-	 <h1 class="heading" data-aos="fade-up">Login</h1>
-	 <label for="username"></label><input id="username" type="text" autocomplete="off" placeholder="Enter your username">
- </div>
- <div class="form-item">
-	 <label for="password"></label><input id="password" type="password" autocomplete="off" placeholder="Password">
- </div>
- <div class="form-item">
-<input id="submit" type="submit" autocomplete="off" placeholder="Submit">
-<!--	 <button id="submit">Login</button>-->
- </div>
+
+ 						<div class="form-item">
+	 					<h1 class="heading" data-aos="fade-up">Login</h1>
+	 					<label for="username"></label><input name="username" id="username" type="text" autocomplete="off" placeholder="Enter your username">
+ 						</div>
+							<div class="form-item">
+	 							<label for="password"></label><input name="password" id="password" type="password" autocomplete="off" placeholder="Password">
+ 							</div>
+ 						<div class="form-item">
+<!--							<input id="submit" type="button" autocomplete="off" placeholder="Submit">-->
+						</div>
 						</form>
+						<div class="form-item">
+							<button type="submit" form="nameform" value="Submit">Login</button>
+						</div>
  <div class="reg-bar">
  <a class="reg" href="register.html">sign in</a>
  <a class="forget" href="javascript:">Forgot Password</a>
