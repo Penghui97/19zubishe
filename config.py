@@ -1,23 +1,7 @@
-DIALECT = 'mysql'
-DRIVER = 'pymysql'
-USERNAME = 'root'
-PASSWORD = 'root'
-HOST = '127.0.0.1'
-PORT = '3306'
-DATABASE = 'flasktest'
+import os
+from demo import app
 
-SQLALCHEMY_DATABASE_URI = '{}+{}://{}:{}@{}:{}/{}'.format(
-    DIALECT,
-    DRIVER,
-    USERNAME,
-    PASSWORD,
-    HOST,
-    PORT,
-    DATABASE
-)
+app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'database.db'))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
-# 便于调试
-TEMPLATES_AUTO_RELOAD = True
-SEND_FILE_MAX_AGE_DEFAULT = 0
-SQLALCHEMY_TRACK_MODIFICATIONS = True
 
