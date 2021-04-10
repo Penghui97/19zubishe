@@ -112,17 +112,24 @@
                     <div class="dowebok">
  <div class="logo1"></div>
                         <h1 class="heading" data-aos="fade-up">Registration</h1>
+						<form method="post" action="/register" id="nameform">
+							{% for message in get_flashed_messages() %}
+								{{ message  }}
+							{% endfor %}
+
  <div class="form-item">
-          <input id="email" type="text" autocomplete="off" placeholder="Enter your email">
+
+          <input name="email" id="email" type="text" autocomplete="off" placeholder="Enter your email">
  </div>
  <div class="form-item">
 
- <input id="username" type="text" autocomplete="off" placeholder="Enter your username">
+ <input name="username" id="username" type="text" autocomplete="off" placeholder="Enter your username">
  </div>
  <div class="form-item">
- <input id="password" type="password" autocomplete="off" placeholder="Enter your password">
+ <input name="password" id="password" type="password" autocomplete="off" placeholder="Enter your password">
  </div>
- <div class="form-item"><button id="submit">Sign In</button></div>
+							</form>
+ <div class="form-item"><button type="submit" form="nameform" value="Submit" id="submit">Register</button></div>
  <div class="reg-bar">
  <a class="reg" href="login.html">sign up</a>
  <a class="forget" href="javascript:">Forgot Password</a>

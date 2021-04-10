@@ -28,6 +28,8 @@ def login():
     # return render_template('rendering.html', form=form)
     name = request.form.get('username')
     password = request.form.get('password')
+    print(name)
+    print(password)
     if name == 'admin' and password == '123':
         session['name'] = name
         return redirect(url_for('login'))
@@ -36,8 +38,19 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    print(email)
+    print(username)
+    print(password)
+    if username == 'admin' and password == '123':
+        session['name'] = username
+        return redirect(url_for('register'))
+    if username != 'admin':
+        flash('no this name')
     return render_template('register.html')
 
 
