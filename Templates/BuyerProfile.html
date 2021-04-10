@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="../static/fonts/icomoon/style.css">
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+
+	<link rel="stylesheet" href="../static/css/tiny-slider.css">
+	<link rel="stylesheet" href="../static/css/aos.css">
+	<link rel="stylesheet" href="../static/css/style.css">
+    <style type="text/css">
+
+ .dowebok { position: absolute; left: 50%; top: 50%; width: 430px; height: 650px; margin: -300px 0 0 -215px;  overflow: hidden;}
+ .logo1 { width: 104px; height: 104px; margin: 50px auto 80px; background:  0 0 no-repeat; }
+ .form-item { position: relative; width: 360px; margin: 0 auto; padding-bottom: 30px;}
+ .form-item input { width: 288px; height: 48px; padding-left: 70px; border: 1px solid #fff; border-radius: 25px; font-size: 18px; color: #fff; background-color: transparent; outline: none;}
+ .form-item button { width: 360px; height: 50px; border: 0; border-radius: 25px; font-size: 18px; color: #1f6f4a; outline: none; cursor: pointer; background-color: #fff; }
+ #username { background:  20px 14px no-repeat; }
+ #password { background:  23px 11px no-repeat; }
+ #email {background: 20px 14px no-repeat;}
+ .tip { display: none; position: absolute; left: 20px; top: 52px; font-size: 14px; color: #f50; }
+ .reg-bar { width: 360px; margin: 20px auto 0; font-size: 14px; overflow: hidden;}
+ .reg-bar a { color: #fff; text-decoration: none; }
+ .reg-bar a:hover { text-decoration: underline; }
+ .reg-bar .reg { float: left; }
+ .reg-bar .forget { float: right; }
+ .dowebok ::-webkit-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok :-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok ::-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+ .dowebok :-ms-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+ @media screen and (max-width: 500px) {
+ * { box-sizing: border-box; }
+ .dowebok { position: static; width: auto; height: auto; margin: 0 30px; border: 0; border-radius: 0; }
+ .logo { margin: 50px auto; }
+ .form-item { width: auto; }
+ .form-item input, .form-item button, .reg-bar { width: 100%; }
+ }
+    </style>
+
+
+
+	<title>Buyer Profile</title>
+</head>
+<body>
+<div class="container">
+ <div class="header">
+ <h1>My Profile</h1>
+ </div>
+
+ <!--
+  <p class="text-muted">本行内容是减弱的</p>
+  -->
+ <table class="table table-striped table-bordered table-hover table-condensed">
+ <!--
+  .table-striped 在 <tbody> 内添加斑马线形式的条纹 ( IE8 不支持)
+  .table-bordered 为所有表格的单元格添加边框
+  .table-hover 在 <tbody> 内的任一行启用鼠标悬停状态
+  .table-condensed 让表格更加紧凑
+ -->
+ <thead>
+  <tr class="active">
+  <th>Items</th>
+  <th>Information</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr class="success">
+  <td>Username</td>
+  <td>Admin1</td>
+  </tr>
+  <tr>
+  <td>Email Address</td>
+  <td>123@123.com</td>
+  </tr>
+  <tr class="warning">
+  <td>Phone Number</td>
+  <td>123321</td>
+  </tr>
+  <tr class="danger">
+ <!--
+  .active 对某一特定的行或单元格应用悬停颜色；.success表示一个成功的或积极的动作；
+  .warning 表示一个需要注意的警告；.danger 表示一个危险的或潜在的负面动作；
+ -->
+  <td>ID Number</td>
+  <td>110110</td>
+  </tr>
+ </tbody>
+ </table>
+ </div>
+
+
+</body>
+</html>
