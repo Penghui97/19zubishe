@@ -1,13 +1,17 @@
 from flask import render_template, request, redirect, url_for, session, flash
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 # from From import MyForm
 app = Flask(__name__, template_folder='Templates')
 # app.config['SECRET_KEY'] = 'project'
 app.secret_key = 'project'
 
-app.config.from_pyfile('config.py')
+app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'database.db'))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+
+# app.config.from_pyfile('config.py')
 app.debug=True
 
 db=SQLAlchemy(app)
@@ -55,5 +59,7 @@ def register():
 
 
 if __name__ == '__main__':
+
     app.run()
+    db.create_all()
 
