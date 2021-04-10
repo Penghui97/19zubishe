@@ -30,14 +30,14 @@ def login():
     # password = request.form.get('password')
     # print(name)
     # return render_template('rendering.html', form=form)
-    name = request.form.get('username')
+    username = request.form.get('username')
     password = request.form.get('password')
-    print(name)
+    print(username)
     print(password)
-    if name == 'admin' and password == '123':
-        session['name'] = name
+    if username == 'admin' and password == '123':
+        session['name'] = username
         return redirect(url_for('login'))
-    if name != 'admin':
+    if username != 'admin':
         flash('no this name')
     return render_template('login.html')
 
