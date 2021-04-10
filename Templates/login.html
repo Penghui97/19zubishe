@@ -111,12 +111,13 @@
                     <div class="dowebok">
  <div class="logo1"></div>
 						<form method="post" action="/login" id="nameform">
-							{% for message in get_flashed_messages() %}
-								{{ message  }}
-							{% endfor %}
+
 
  						<div class="form-item">
 	 					<h1 class="heading" data-aos="fade-up">Login</h1>
+							{% for message in get_flashed_messages() %}
+								{{ message  }}
+							{% endfor %}
 	 					<label for="username"></label><input name="username" id="username" type="text" autocomplete="off" placeholder="Enter your username">
  						</div>
 							<div class="form-item">
