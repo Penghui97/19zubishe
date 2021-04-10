@@ -25,8 +25,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 # app.config.from_pyfile('config.py')
 app.debug = True
 
-db = SQLAlchemy(app)
-
+#初始
+db = SQLAlchemy()
+db.init_app(app)
 
 @app.route('/')
 def hello_world():
@@ -127,5 +128,6 @@ def show_house():
 
 if __name__ == '__main__':
     app.run()
-    db.create_all()
+
+
 
