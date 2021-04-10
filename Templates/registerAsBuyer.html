@@ -110,10 +110,34 @@
 				<div class="col-lg-9 text-center">
 
                     <div class="dowebok">
- <div class="logo1"></div>
-                        <h1 class="heading" data-aos="fade-up">Registration</h1>
-						<button class="btn btn-light"><a href="registerAsBuyer"> As Buyer</a></button>
-					<button class="btn btn-light"><a href="registerAsSeller"> As Seller</a></button>
+                        <br>
+                        <br>
+                        <br>
+ <div class="logo1" style="position: inherit"></div>
+                        <h1 class="heading"  data-aos="fade-up">Registration As Buyer</h1>
+						<form method="post" action="/register" id="nameform">
+							{% for message in get_flashed_messages() %}
+								<div class="alert" style="color: red" > {{ message  }}</div>
+							{% endfor %}
+
+ <div class="form-item">
+
+          <input name="email" id="email" type="text" autocomplete="off" placeholder="Enter your email">
+ </div>
+ <div class="form-item">
+
+ <input name="username" id="username" type="text" autocomplete="off" placeholder="Enter your username">
+ </div>
+ <div class="form-item">
+ <input name="password" id="password" type="password" autocomplete="off" placeholder="Enter your password">
+ </div>
+							</form>
+ <div class="form-item"><button type="submit" form="nameform" value="Submit" id="submit">Register</button></div>
+ <div class="reg-bar">
+ <a class="reg" href="login.html">sign up</a>
+ <a class="forget" href="javascript:">Forgot Password</a>
+ </div>
+ </div>
 
 
 
