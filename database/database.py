@@ -20,6 +20,7 @@ class Admin(db.Model):
 
 
 class Buyer(db.Moder):
+
     ID=db.Column(db.Integer,primary_key=True)
     state=db.Column(db.String)
     ID_card_number=db.Column(db.String,index=True,unique=True)

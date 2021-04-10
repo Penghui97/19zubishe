@@ -2,15 +2,17 @@ from flask import render_template, request, redirect, url_for, session, flash, R
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
-
-from . import auth
+import config
+import auth
 import os
 
 # # from From import MyForm
 app = Flask(__name__, template_folder='Templates',instance_relative_config=True)
-# app.config['SECRET_KEY'] = 'project'
+# app.config.from_mapping(
+#         SECRET_KEY='dev',
+#         DATABASE=os.path.join(app.instance_path, 'database.db'),
+#     )
 app.secret_key = 'project'
-
 app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'database.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
@@ -18,9 +20,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.debug = True
 
 db = SQLAlchemy(app)
-
-db.init_app(app)
-app.register_blueprint(auth.bp)
 
 
 @app.route('/')
@@ -51,6 +50,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+
     if request.method == 'POST':
         email = request.form.get('email')
         username = request.form.get('username')
@@ -58,6 +58,7 @@ def register():
         print(email)
         print(username)
         print(password)
+        db = config.get_db()
         error = None
 
         if not username:
@@ -67,14 +68,14 @@ def register():
         elif not email:
             error = 'Email is required.'
         elif db.execute(
-                'SELECT id FROM user WHERE username = ?', (username,)
+                'SELECT id FROM account WHERE username = ?',(username,)
         ).fetchone() is not None:
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                'INSERT INTO account (username, password, email) VALUES (?, ?, ?)',
+                (username, generate_password_hash(password), email)
             )
             db.commit()
             return redirect(url_for('login'))
@@ -89,7 +90,6 @@ def register():
 
 
 if __name__ == '__main__':
-
     app.run()
     db.create_all()
 
