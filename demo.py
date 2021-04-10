@@ -1,15 +1,16 @@
 from flask import render_template, request, redirect, url_for, session, flash, Response, jsonify
 from flask import Flask
+from forms import *
+from database.database import *
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
-
-from . import auth
+import auth
 import os
 
 # # from From import MyForm
 app = Flask(__name__, template_folder='Templates',instance_relative_config=True)
 # app.config['SECRET_KEY'] = 'project'
-app.secret_key = 'project'
+app.secret_key = 'projectj'
 
 app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'database.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
@@ -41,11 +42,22 @@ def login():
     password = request.form['password']
     print(username)
     print(password)
+
+    # 模拟验证
     if username == 'admin' and password == '123':
         session['name'] = username
         return redirect(url_for('login'))
     if username != 'admin':
         flash('no this name')
+
+    # 从数据库中验证信息
+    form=LoginForm()
+    account=Account.query.all()
+    if form.validate_on_sumbit():
+        if  account.email==form.email.data and account.username==form.username.data and account.password==form.password.data:
+            db.session.commit()
+
+
     return render_template('login.html')
 
 
@@ -80,12 +92,31 @@ def register():
             return redirect(url_for('login'))
 
         flash(error)
+
+        # 提交信息到数据库中
+        # form=RegisterForm()
+        account=Account(email,username,password)
+        db.session.add(account)
+        db.session.commit()
+        flash('Your information is saved.')
+
     # if username == 'admin' and password == '123':
     #     session['name'] = username
     #     return redirect(url_for('register'))
     # if username != 'admin':
     #     flash('no this name')
     return render_template('register.html')
+
+
+'''
+@app.route('/buyer_interface',method=['GET','POST'])
+def show_house():
+    form=HouseForm()  # 现在还没有创建HouseForm表单
+    if request.method=='POST' or form.validate_on_submit():
+        db.session.add()
+        '''
+
+
 
 
 if __name__ == '__main__':

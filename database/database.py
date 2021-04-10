@@ -19,7 +19,7 @@ class Admin(db.Model):
     admin_permission=db.Column(db.String,index=True)
 
 
-class Buyer(db.Moder):
+class Buyer(db.Model):
     ID=db.Column(db.Integer,primary_key=True)
     state=db.Column(db.String)
     ID_card_number=db.Column(db.String,index=True,unique=True)
