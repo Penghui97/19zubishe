@@ -56,11 +56,11 @@ def login():
         flash('no this name')
 
     # 从数据库中验证信息
-    form=LoginForm()
+    '''form=LoginForm()
     account=Account.query.all()
     if form.validate_on_sumbit():
         if  account.email==form.email.data and account.username==form.username.data and account.password==form.password.data:
-            db.session.commit()
+            db.session.commit()'''
 
 
     return render_template('login.html')
