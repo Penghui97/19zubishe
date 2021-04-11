@@ -31,6 +31,22 @@ def hello_world():
     return render_template('index.html')
 
 
+@app.route('/properties')
+def properties():
+    return render_template('properties.html')
+
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -178,6 +194,8 @@ def registerAsSeller():
         # if username != 'admin':
         #     flash('no this name')
         return render_template('registerAsSeller.html')
+
+
 
 
 
