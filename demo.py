@@ -64,12 +64,6 @@ def login():
         if username != 'admin':
             flash('no this name')
     return render_template('login.html')
-    # # 从数据库中验证信息
-    # form=LoginForm()
-    # account=Account.query.all()
-    # if form.validate_on_sumbit():
-    #     if  account.email==form.email.data and account.username==form.username.data and account.password==form.password.data:
-    #         db.session.commit()
 
 
 
@@ -106,23 +100,84 @@ def register():
             return redirect(url_for('login'))
 
         flash(error)
-        # 提交信息到数据库中
-        # form=RegisterForm()
-        # account=Account(email,username,password)
-        # db.session.add(account)
-        # db.session.commit()
-        # flash('Your information is saved.')
+
     return render_template('register.html')
 
+@app.route('/registerAsBuyer', methods=['GET', 'POST'])
+def registerAsBuyer():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print(email)
+        print(username)
+        print(password)
+        error = None
 
-'''
-@app.route('/buyer_interface',method=['GET','POST'])
-def show_house():
-    form=HouseForm()  # 现在还没有创建HouseForm表单
-    if request.method=='POST' or form.validate_on_submit():
-        db.session.add()
-        '''
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif not email:
+            error = 'Email is required.'
+        elif db.execute(
+                'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            error = 'User {} is already registered.'.format(username)
 
+        if error is None:
+            db.execute(
+                'INSERT INTO user (username, password) VALUES (?, ?)',
+                (username, generate_password_hash(password))
+            )
+            db.commit()
+            return redirect(url_for('login'))
+
+        flash(error)
+    # if username == 'admin' and password == '123':
+    #     session['name'] = username
+    #     return redirect(url_for('register'))
+    # if username != 'admin':
+    #     flash('no this name')
+    return render_template('registerAsBuyer.html')
+
+@app.route('/registerAsSeller', methods=['GET', 'POST'])
+def registerAsSeller():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print(email)
+        print(username)
+        print(password)
+        error = None
+
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif not email:
+            error = 'Email is required.'
+        elif db.execute(
+                'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            error = 'User {} is already registered.'.format(username)
+
+        if error is None:
+            db.execute(
+                'INSERT INTO user (username, password) VALUES (?, ?)',
+                (username, generate_password_hash(password))
+            )
+            db.commit()
+            return redirect(url_for('login'))
+
+        flash(error)
+        # if username == 'admin' and password == '123':
+        #     session['name'] = username
+        #     return redirect(url_for('register'))
+        # if username != 'admin':
+        #     flash('no this name')
+        return render_template('registerAsSeller.html')
 
 
 
