@@ -31,20 +31,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/demo.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Flask server.Flask (demo)">
-    <configuration name="demo" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager" selected="Python.demo">
+    <configuration name="demo" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="19zubishe" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\大四下半年\课设\Goup19\19zubishe\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -73,7 +73,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask server.Flask (demo)" />
       <item itemvalue="Python.demo" />
     </list>
   </component>
@@ -104,6 +103,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="version2" />
     <option name="LAST_COMMIT_MESSAGE" value="version2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="656" y="112" key="#demo" timestamp="1618151858979">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="112" key="#demo/0.0.1920.1040@0.0.1920.1040" timestamp="1618151858979" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
