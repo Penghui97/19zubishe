@@ -74,9 +74,12 @@ def login():
             return redirect(url_for('login'))
         flash(error)
         # 模拟验证
-        if username == 'admin' and password == '123':
+        if username == 'admin' and password == '123': #buyer
             session['name'] = username
-            return redirect(url_for('register'))
+            return render_template('BuyerMainPage.html')
+        if username == 'admin2' and password == '123':  #seller
+            session['name'] = username
+            return render_template('SellerMainPage.html')
         if username != 'admin':
             flash('no this name')
     return render_template('login.html')
