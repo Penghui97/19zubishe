@@ -35,6 +35,18 @@ def hello_world():
 def properties():
     return render_template('properties.html')
 
+@app.route('/BuyerNewHouse')
+def BuyerNewHouse():
+    return render_template('BuyerNewHouse.html')
+
+@app.route('/BuyerSecondHand')
+def BuyerSecondHand():
+    return render_template('BuyerSecondHand.html')
+
+@app.route('/BuyerRent')
+def BuyerRent():
+    return render_template('BuyerRent.html')
+
 @app.route('/services')
 def services():
     return render_template('services.html')
@@ -46,6 +58,14 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/BuyerProfile')
+def BuyerProfile():
+    return render_template('BuyerProfile.html')
+
+@app.route('/SellerProfile')
+def SellerProfile():
+    return render_template('SellerProfile.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
