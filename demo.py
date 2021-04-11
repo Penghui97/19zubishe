@@ -89,36 +89,36 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        username = request.form.get('username')
-        password = request.form.get('password')
-        print(email)
-        print(username)
-        print(password)
-        db = config.get_db()
-        error = None
+    # if request.method == 'POST':
+    #     email = request.form.get('email')
+    #     username = request.form.get('username')
+    #     password = request.form.get('password')
+    #     print(email)
+    #     print(username)
+    #     print(password)
+    #     db = config.get_db()
+    #     error = None
+    #
+    #     if not username:
+    #         error = 'Username is required.'
+    #     elif not password:
+    #         error = 'Password is required.'
+    #     elif not email:
+    #         error = 'Email is required.'
+    #     elif db.execute(
+    #             'SELECT id FROM account WHERE username = ?', (username,)
+    #     ).fetchone() is not None:
+    #         error = 'User {} is already registered.'.format(username)
+    #
+    #     if error is None:
+    #         db.execute(
+    #             'INSERT INTO account (username, password, email) VALUES (?, ?, ?)',
+    #             (username, generate_password_hash(password), email)
+    #         )
+    #         db.commit()
+    #         return redirect(url_for('login'))
 
-        if not username:
-            error = 'Username is required.'
-        elif not password:
-            error = 'Password is required.'
-        elif not email:
-            error = 'Email is required.'
-        elif db.execute(
-                'SELECT id FROM account WHERE username = ?', (username,)
-        ).fetchone() is not None:
-            error = 'User {} is already registered.'.format(username)
-
-        if error is None:
-            db.execute(
-                'INSERT INTO account (username, password, email) VALUES (?, ?, ?)',
-                (username, generate_password_hash(password), email)
-            )
-            db.commit()
-            return redirect(url_for('login'))
-
-        flash(error)
+        # flash(error)
 
     return render_template('register.html')
 
@@ -131,6 +131,7 @@ def registerAsBuyer():
         print(email)
         print(username)
         print(password)
+        db = config.get_db()
         error = None
 
         if not username:
