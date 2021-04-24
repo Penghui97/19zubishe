@@ -54,16 +54,18 @@ def login():
         password = request.form.get('password')
         print(username)
         print(password)
+        db = config.get_db()
         error = None
 
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-        # elif db.execute(
-        #         'SELECT id FROM user WHERE username = ?', (username,)
-        # ).fetchone() is not None:
-        #     error = 'User {} is already registered.'.format(username)
+        elif db.execute(
+                'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            session['name'] = username
+            return render_template('BuyerMainPage.html')
 
         # if error is None:
         #     db.execute(
@@ -122,6 +124,7 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/registerAsBuyer', methods=['GET', 'POST'])
 def registerAsBuyer():
     if request.method == 'POST':
@@ -147,19 +150,16 @@ def registerAsBuyer():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                'INSERT INTO user (username, password,email) VALUES (?, ?, ?)',
+                (username, generate_password_hash(password), email)
             )
             db.commit()
             return redirect(url_for('login'))
-
-        flash(error)
-    # if username == 'admin' and password == '123':
-    #     session['name'] = username
-    #     return redirect(url_for('register'))
-    # if username != 'admin':
-    #     flash('no this name')
+        else:
+            flash(error)
+    # return redirect(url_for('registerAsBuyer'))
     return render_template('registerAsBuyer.html')
+
 
 @app.route('/registerAsSeller', methods=['GET', 'POST'])
 def registerAsSeller():
@@ -185,8 +185,8 @@ def registerAsSeller():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
+                'INSERT INTO user (username, password, email) VALUES (?, ?, ?)',
+                (username, generate_password_hash(password), email)
             )
             db.commit()
             return redirect(url_for('login'))
