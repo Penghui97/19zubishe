@@ -28,6 +28,92 @@ def hello_world():
     return render_template('index.html')
 
 
+<<<<<<< Updated upstream
+=======
+@app.route('/properties')
+def properties():
+    return render_template('properties.html')
+
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/SellerMainPage')
+def sellfer_main_page():
+    if request.method=='POST':
+        redirect(url_for('NewHouse'))
+    return render_template('SellerMainPage.html')
+
+@app.route('/BuyerMainPage')
+def buyer_main_page():
+
+    if request.method=='POST':
+        redirect(url_for('NewHouse.html'))
+
+    return render_template('BuyerMainPage.html')
+
+
+# BuyerMainPage指向的界面的视图函数
+@app.route('/BuyerNewHouse',endpoint='BuyerNewHouse')
+def buyer_new_house():
+    return render_template('BuyerNewHouse.html')
+
+@app.route('/BuyerSecondHand',endpoint='BuyerSecondHand')
+def buyer_second_hands():
+    return render_template('BuyerSecondHand.html')
+
+@app.route('/BuyerRent',endpoint='BuyerRent')
+def buyer_rent_house():
+    return render_template('BuyerRentHouse.html')
+
+@app.route('/BuyerOrderLists',endpoint='BuyerOrderLists')
+def buyer_order_lists():
+    return render_template('BuyerOrderLists.html')
+
+@app.route('/BuyerOperationProcess',endpoint='BuyerOperationProcess')
+def buyer_operation_process():
+    return render_template('BuyerOperationProcess.html')
+
+@app.route('/BuyerPredictionOfPrice',endpoint='BuyerPredictionOfPrice')
+def buyer_prediction_of_price():
+    return render_template('BuyerPredictionOfPrice.html')
+
+
+# SellerMainPage指向的界面的视图函数
+@app.route('/SellerNewHouse',endpoint='SellerNewHouse')
+def buyer_new_house():
+    return render_template('BuyerNewHouse.html')
+
+@app.route('/SellerSecondHand',endpoint='SellerSecondHand')
+def buyer_second_hands():
+    return render_template('BuyerSecondHand.html')
+
+@app.route('/SellerRent',endpoint='SellerRent')
+def buyer_rent_house():
+    return render_template('BuyerRentHouse.html')
+
+@app.route('/SellerOrderLists',endpoint='SellerOrderLists')
+def buyer_order_lists():
+    return render_template('SellerOrderLists.html')
+
+@app.route('/SellerOperationProcess',endpoint='SellerOperationProcess')
+def buyer_operation_process():
+    return render_template('BuyerOperationProcess.html')
+
+@app.route('/SellerPredictionOfPrice',endpoint='SellerPredictionOfPrice')
+def buyer_prediction_of_price():
+    return render_template('SellerPredictionOfPrice.html')
+
+
+>>>>>>> Stashed changes
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # form = MyForm()
@@ -69,7 +155,34 @@ def register():
         elif db.execute(
                 'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
+<<<<<<< Updated upstream
             error = 'User {} is already registered.'.format(username)
+=======
+            session['name'] = username
+            return render_template('BuyerMainPage.html')
+
+        # if error is None:
+        #     db.execute(
+        #         'INSERT INTO user (username, password) VALUES (?, ?)',
+        #         (username, generate_password_hash(password))
+        #     )
+        #     db.commit()
+        #    return redirect(url_for('login'))
+        flash(error)
+        # 模拟验证
+        if username == 'admin' and password == '123': #buyer
+            session['name'] = username
+            return render_template('BuyerMainPage.html')
+        if username == 'admin2' and password == '123':  #seller
+            session['name'] = username
+            return render_template('SellerMainPage.html')
+        if username != 'admin':
+            flash('no this name')
+    return render_template('login.html')
+
+
+
+>>>>>>> Stashed changes
 
         if error is None:
             db.execute(
