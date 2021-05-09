@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session, flash, Response, jsonify
-from flask import Flask
+from flask import Flask,session
 from forms import *
 from database.database import *
 from flask_sqlalchemy import SQLAlchemy
@@ -67,6 +67,12 @@ def BuyerProfile():
 def SellerProfile():
     return render_template('SellerProfile.html')
 
+@app.route('/BuyerMainPage')
+def BuyerMainPage():
+    username = session['name']
+    print(username)
+    return render_template('BuyerMainPage.html',username = username)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -85,7 +91,7 @@ def login():
                 'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
             session['name'] = username
-            return render_template('BuyerMainPage.html')
+            return redirect(url_for('BuyerMainPage'),ses = session)
 
         # if error is None:
         #     db.execute(
@@ -98,10 +104,10 @@ def login():
         # 模拟验证
         if username == 'admin' and password == '123': #buyer
             session['name'] = username
-            return render_template('BuyerMainPage.html')
+            return redirect(url_for('BuyerMainPage'))
         if username == 'admin2' and password == '123':  #seller
             session['name'] = username
-            return render_template('SellerMainPage.html')
+            return redirect(url_for('BuyerMainPage'))
         if username != 'admin':
             flash('no this name')
     return render_template('login.html')
