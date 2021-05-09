@@ -92,14 +92,14 @@
 					<div class="property-item mb-30">
 
 						<a href="property-single" class="img">
-							<img src="../static/images/new1.jpg" alt="Image" class="img-fluid">
+							<img id="img1" src="../static/images/new1.jpg" alt="Image" class="img-fluid">
 						</a>
 
 						<div class="property-content">
-							<div class="price mb-2"><span>$1,234,000</span></div>
+							<div id="house_price" class="price mb-2"><span>$1,234,000</span></div>
 							<div>
-								<span class="d-block mb-2 text-black-50">5232 North Carolina Ave. 21BC</span>
-								<span class="city d-block mb-3">Beijing, China</span>
+								<span id="house_name" class="d-block mb-2 text-black-50">5232 North Carolina Ave. 21BC</span>
+								<span id="house_location" class="city d-block mb-3">Beijing, China</span>
 
 								<div class="specs d-flex">
 									<span class="d-block d-flex align-items-center me-3">
@@ -109,7 +109,28 @@
 									<span class="d-block d-flex align-items-center">
 										<span class="icon-bath me-2"></span>
 										<span class="caption">2 baths</span>
-										&nbsp;<span class="caption"> <button class="btn-dark">Buy</button>
+										&nbsp;<span class="caption"> <button class="btn-dark" onclick="buyhouse()">Buy</button>
+										<script type="text/javascript">
+											function buyhouse(){
+												var img_path=document.getElementById("img1").getAttribute('src');
+												var house_name=document.getElementById("house_name").innerText;
+												var house_price=document.getElementById("house_price").innerText;
+												var house_location=document.getElementById("house_location").innerText;
+
+												setCookie('imagine',img_path,1);
+												setCookie('house_name',house_name,1);
+												setCookie('house_price',house_price,1);
+												setCookie('house_location',house_location,1);
+												location.href='property-single';
+											}
+											function setCookie(c_name,value,expiredays){
+												var exdate=new Date();
+												exdate.setDate(exdate.getDate()+expiredays);
+												document.cookie=c_name+ "=" +escape(value)+
+												((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+											}
+
+										</script>
 										&nbsp;<button class="btn-dark">Connect Seller</button></span>
 									</span>
 

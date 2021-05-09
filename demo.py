@@ -6,6 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 import auth, config
 import os
+import re
+import pandas as pd
 
 # # from From import MyForm
 app = Flask(__name__, template_folder='Templates',instance_relative_config=True)
@@ -35,9 +37,25 @@ def hello_world():
 def properties():
     return render_template('properties.html')
 
-@app.route('/BuyerNewHouse')
+@app.route('/property-single',methods=['GET','POST'])
+def property_single():
+    img_path=request.cookies.get('imagine')
+    house_name=request.cookies.get('house_name')
+    house_price=request.cookies.get('house_price')
+    house_location = request.cookies.get('house_location')
+    str_house_name=re.sub("%20"," ",str(house_name))
+    str_house_price = re.sub("%24", "$", str(house_price))
+    str_house_price=re.sub("%2C",",",str_house_price)
+    str_house_location = re.sub("%2C", ",", str(house_location))
+    str_house_location = re.sub("%20", " ", str_house_location)
+    return render_template('property-single.html',img1=img_path,house_name=str_house_name,house_location=str_house_location,house_price=str_house_price)
+
+@app.route('/BuyerNewHouse',endpoint='BuyerNewHouse',methods=['GET','POST'])
 def BuyerNewHouse():
+    if request.method=='POST':
+        return redirect(url_for('property-single'))
     return render_template('BuyerNewHouse.html')
+
 
 @app.route('/BuyerSecondHand')
 def BuyerSecondHand():
@@ -220,11 +238,25 @@ def registerAsSeller():
         return render_template('registerAsSeller.html')
 
 
+@app.route('/prediction')
+def prediction_of_price():
+    data = pd.read_csv('bj.csv', encoding='gb18030')
+    df = data.loc[data.index[0:len(data)], ['城区', '房价']]
+    series = df.groupby('城区')['房价'].mean()
+    districts = []
+    average_price = []
+    for item in series.index:
+        districts.append(item)
+    for item in series.values:
+        average_price.append(item)
 
+    context = {'districts': districts, 'average_price': average_price}
+
+    return render_template('Prediction.html',**context)
 
 
 if __name__ == '__main__':
-
     app.run()
-    # db.create_all()
+    db.create_all()
+
 
