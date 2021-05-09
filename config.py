@@ -3,6 +3,7 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+import os
 
 
 def get_db():
@@ -47,9 +48,11 @@ def init_app(app):
 
 def get_db():
     if 'db' not in g:
+        path=os.getcwd()
         g.db = sqlite3.connect(
             # current_app.config['SQLALCHEMY_DATABASE_URI'],
-            r'E:\Rocket_19\19zubishe\database.db',
+            #r'E:\Rocket_19\19zubishe\database.db',
+            r'{}\database.db'.format(path),
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row

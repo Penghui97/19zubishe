@@ -240,23 +240,46 @@ def registerAsSeller():
 
 @app.route('/prediction')
 def prediction_of_price():
+    pattern = re.compile(r'\d+')
     data = pd.read_csv('bj.csv', encoding='gb18030')
-    df = data.loc[data.index[0:len(data)], ['城区', '房价']]
-    series = df.groupby('城区')['房价'].mean()
-    districts = []
-    average_price = []
-    for item in series.index:
-        districts.append(item)
-    for item in series.values:
-        average_price.append(item)
 
-    context = {'districts': districts, 'average_price': average_price}
+    cnt = 0
+    for row in data['单价/平']:
+        try:
+            data.loc[cnt, '单价/平'] = pattern.findall(data.loc[cnt, '单价/平'])
+            int(row)
+        except ValueError:
+            pass
+        cnt += 1
+
+    data['单价/平'] = data['单价/平'].astype('int')
+
+    df_total_price = data.loc[data.index[0:len(data)], ['城区', '房价']]
+    df_permeter_price = data.loc[data.index[0:len(data)], ['城区', '单价/平']]
+
+    series1 = df_total_price.groupby('城区')['房价'].mean()
+    series2 = df_permeter_price.groupby('城区')['单价/平'].mean()
+
+    series = pd.concat([series1, series2], axis=1)
+
+    districts = []
+    average_total_price = []
+    average_permeter_price = []
+
+    for item in series1.index:
+        districts.append(item)
+    for item in series1.values:
+        average_total_price.append(item * 10000)
+    for item in series2.values:
+        average_permeter_price.append(item)
+
+    context = {'districts': districts, 'average_total_price': average_total_price,'average_permeter_price': average_permeter_price}
 
     return render_template('Prediction.html',**context)
 
 
 if __name__ == '__main__':
     app.run()
-    db.create_all()
+    #db.create_all()
 
 

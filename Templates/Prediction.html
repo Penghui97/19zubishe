@@ -109,7 +109,7 @@
 			<div class="row justify-content-center align-items-center">
 				<div class="col-lg-9 text-center">
 
-					<div id="main" style="width: 1200px;height:400px;"></div>
+					<div id="main" style="width: 1200px;height:400px;background:#FFFFFF"></div>
 					<script type="text/javascript">
 
 						var myChart = echarts.init(document.getElementById('main'));
@@ -119,6 +119,7 @@
 								text: 'price_prediction'
 							},
 							tooltip: {},
+
 							legend: {
 								orient:'horizontal',
 							},
@@ -135,8 +136,14 @@
 							series: [{
 								name: 'average_price',
 								type: 'bar',
-								data: {{ average_price }}
-							}]
+								data: {{ average_total_price }}
+							},
+							{
+								name: 'average_permeter_price',
+								type: 'bar',
+								data: {{ average_permeter_price }}
+							}
+							]
 						};
 
 						myChart.setOption(option);
