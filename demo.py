@@ -85,6 +85,10 @@ def BuyerProfile():
 def SellerProfile():
     return render_template('SellerProfile.html')
 
+@app.route('/BuyerOrderForm')
+def BuyerOrderForm():
+    return render_template('BuyerOrderForm.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
